@@ -80,20 +80,20 @@ namespace YNL.Extension.Method
         /// <summary>
         /// Set single axis of transform.
         /// </summary>
-        public static void SetX(this Transform transform, float localZ, bool isLocal = false)
-        {
-            if (!isLocal) transform.position = transform.position.SetX(localZ);
-            else transform.localPosition = transform.localPosition.SetX(localZ);
-        }
-        public static void SetY(this Transform transform, float localZ, bool isLocal = false)
-        {
-            if (!isLocal) transform.position = transform.position.SetY(localZ);
-            else transform.localPosition = transform.localPosition.SetY(localZ);
-        }
-        public static void SetZ(this Transform transform, float localZ, bool isLocal = false)
-        {
-            if (!isLocal) transform.position = transform.position.SetZ(localZ);
-            else transform.localPosition = transform.localPosition.SetZ(localZ);
-        }
+        //public static void SetX(this Transform transform, float localZ, bool isLocal = false)
+        //{
+        //    if (!isLocal) transform.position = transform.position.SetX(localZ);
+        //    else transform.localPosition = transform.localPosition.SetX(localZ);
+        //}
+        //public static void SetY(this Transform transform, float localZ, bool isLocal = false)
+        //{
+        //    if (!isLocal) transform.position = transform.position.SetY(localZ);
+        //    else transform.localPosition = transform.localPosition.SetY(localZ);
+        //}
+        //public static void SetZ(this Transform transform, float localZ, bool isLocal = false)
+        //{
+        //    if (!isLocal) transform.position = transform.position.SetZ(localZ);
+        //    else transform.localPosition = transform.localPosition.SetZ(localZ);
+        //}
     }
 }
