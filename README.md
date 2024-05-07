@@ -1,16 +1,16 @@
-<h1><div align="center"> Yunasawa の Library - Editor </div></h1>
+<h1><div align="center"> Yunasawa の Library - Utilities </div></h1>
 <h4><div align="center"><i> An editor library provides you tools to improve your developing experiments. </i></div></h4>
 
 <p align="center">
  <img src="https://img.shields.io/badge/Script-DOCUMENTATION-blue.svg" alt="script">
- <img src="https://img.shields.io/badge/Yunasawa No Library-Editor-008F64">
+ <img src="https://img.shields.io/badge/Yunasawa No Library-Utilities-008F64">
  <img src="https://img.shields.io/badge/Author-Yunasawa Studio-purple.svg" alt="email">
  <img src="https://img.shields.io/badge/Version-2022.3-orange.svg" alt="version">
 </p>
 
 <h2> ★ About </h2>
 
-A product made by Yunasawa Studio, those will be helpful tools that solve your several problems can appear in your developing progress. <br>
+A product made by Yunasawa Studio, those contains helpful extensions, utilities, addons that solve your several problems can appear in your developing progress. <br>
 Contact us: <kbd> yunasawa200@gmail.com </kbd>
 
 <h2> ★ Contents </h2>
@@ -23,7 +23,7 @@ Contact us: <kbd> yunasawa200@gmail.com </kbd>
 Git URL:
 
 ```
-https://github.com/Yunasawa/YNL-Editor
+https://github.com/Yunasawa/YNL-Utilities
 ```
 
 Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentation/Manual/upm-ui-giturl.html"> How to install a package via Git URL </a>
@@ -33,16 +33,16 @@ Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentatio
 You can add UPM Scrope like this:
 
 ```
-Name: Yunasawa.Library.Editor
+Name: Yunasawa.Library.Utilities
 URL: https://package.openupm.com
-Scope(s): com.yunasawa.ynl.editor
+Scope(s): com.yunasawa.ynl.utilities
 ```
 
 Here is how you can do it: <a href="https://openupm.com/docs/getting-started.html#installing-a-upm-package"> How to register a UPM scope(s) </a>
 
 After you register the scope, you can add the package by name: 
 ```
-com.yunasawa.ynl.editor
+com.yunasawa.ynl.utilities
 ```
 
 <h3><i>Install done </i></h3>
