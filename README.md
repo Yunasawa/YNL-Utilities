@@ -44,8 +44,3 @@ After you register the scope, you can add the package by name:
 ```
 com.yunasawa.ynl.utilities
 ```
-
-<h3><i>Install done </i></h3>
-
-After you install the package, you can open the window like this:
-<img width="100%" src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/083a8fd7-f6cc-4679-a81b-03b1a6a08aba" alt="version">
