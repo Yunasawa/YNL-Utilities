@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace YNL.Extension.Method
+namespace YNL.Extensions.Methods
 {
     public static class MTransform
     {

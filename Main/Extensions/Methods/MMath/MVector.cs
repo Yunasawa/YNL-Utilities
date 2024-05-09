@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace YNL.Extension.Method
+namespace YNL.Extensions.Methods
 {
     public static class MVector
     {
