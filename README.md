@@ -33,7 +33,7 @@ Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentatio
 You can add UPM Scrope like this:
 
 ```
-Name: Yunasawa.Library.Utilities
+Name: YunasawaStudio
 URL: https://package.openupm.com
 Scope(s): com.yunasawa.ynl.utilities
 ```
