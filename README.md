@@ -1,5 +1,5 @@
 <h1><div align="center"> Yunasawa の Library - Utilities </div></h1>
-<h4><div align="center"><i> An editor library provides you tools to improve your developing experiments. </i></div></h4>
+<h4><div align="center"><i> An package provides you utilities, extensions, addons to improve your developing experiments. </i></div></h4>
 
 <p align="center">
  <img src="https://img.shields.io/badge/Script-DOCUMENTATION-blue.svg" alt="script">
