@@ -1,4 +1,4 @@
-namespace YNL.Pattern.Observer
+namespace YNL.Patterns.Observers
 {
     // This struct is the data of event
     public struct DriverEvent

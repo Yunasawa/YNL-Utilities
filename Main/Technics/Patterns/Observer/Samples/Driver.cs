@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YNL.Pattern.Observer
+namespace YNL.Patterns.Observers
 {
     // Use IListener for objects that listen to events
     public class Driver : MonoBehaviour, IListener<DriverEvent>
