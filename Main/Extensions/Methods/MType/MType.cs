@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System;
+using System.Security.Cryptography;
 
 namespace YNL.Extensions.Methods
 {
@@ -64,7 +65,25 @@ namespace YNL.Extensions.Methods
                 if (!type.IsNull()) return Activator.CreateInstance(type, parameters);
             }
 
-            MDebug.Error($"'{typeName}' is a type!");
+            MDebug.Error($"'{typeName}' is not a correct type!");
+            return null;
+        }
+
+        /// <summary>
+        /// Get type even from another assembly
+        /// </summary>
+        public static Type GetType(string typeName)
+        {
+            Type type = Type.GetType(typeName);
+            if (!type.IsNull()) return type;
+
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                type = assembly.GetType(typeName);
+                if (!type.IsNull()) return type;
+            }
+
+            MDebug.Error($"'{typeName}' is not a correct type!");
             return null;
         }
     }
