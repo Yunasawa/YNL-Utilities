@@ -1,5 +1,5 @@
 <h1><div align="center"> Yunasawa の Library - Utilities </div></h1>
-<h4><div align="center"><i> An package provides you utilities, extensions, addons to improve your developing experiments. </i></div></h4>
+<h4><div align="center"><i> Boost productivity in both the Unity Editor and built applications using this versatile toolkit. It offers a range of utilities and extensions to streamline your workflow. </i></div></h4>
 
 <p align="center">
  <img src="https://img.shields.io/badge/Script-DOCUMENTATION-blue.svg" alt="script">
