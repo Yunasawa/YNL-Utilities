@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YNL.Utility.Extension.Method
+namespace YNL.Extensions.Methods
 {
     public static class MAnimator
     {
