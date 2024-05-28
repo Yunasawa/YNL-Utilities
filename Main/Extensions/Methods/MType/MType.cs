@@ -72,7 +72,7 @@ namespace YNL.Extensions.Methods
         /// <summary>
         /// Get type even from another assembly
         /// </summary>
-        public static Type GetType(string typeName)
+        public static Type GetTypeIgnoreAssembly(string typeName)
         {
             Type type = Type.GetType(typeName);
             if (!type.IsNull()) return type;
