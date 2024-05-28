@@ -63,28 +63,22 @@ namespace YNL.Extensions.Methods
 
     public static class MCoroutine
     {
-        /// <summary>
-        /// Start a coroutine.
-        /// </summary>
-        public static Coroutine StartACoroutine(this MonoBehaviour mono, IEnumerator enumerator)
-            => mono.StartCoroutine(enumerator);
+        public static Coroutine TryStartCoroutine(this MonoBehaviour mono, IEnumerator coroutine)
+        {
+            if (mono.IsNull() || !mono.gameObject.activeInHierarchy) return null;
+            return mono.StartCoroutine(coroutine);
+        }
 
-        /// <summary>
-        /// Stop a coroutine.
-        /// </summary>
-        public static void StopACoroutine(this MonoBehaviour mono, Coroutine coroutine)
+        public static void TryStopCoroutine(this MonoBehaviour mono, Coroutine coroutine)
         {
             if (coroutine.IsNull()) return;
             mono.StopCoroutine(coroutine);
             coroutine = null;
         }
 
-        /// <summary>
-        /// Stop a list of Coroutines.
-        /// </summary>
-        public static void StopCoroutines(this MonoBehaviour mono, List<Coroutine> list)
+        public static void TryStopCoroutines(this MonoBehaviour mono, List<Coroutine> list)
         {
-            foreach (var coroutine in list) mono.StopACoroutine(coroutine);
+            foreach (var coroutine in list) mono.TryStopCoroutine(coroutine);
             list.Clear();
         }
     }
