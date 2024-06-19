@@ -23,11 +23,18 @@ namespace YNL.Patterns.Observers
             _singleSubscribers.Remove(eventType);
         }
 
-        public static void TriggerSingle<E>(E newEvent) where E : struct
+        public static void ExecuteSingle<E>(E newEvent) where E : struct
         {
             if (!_singleSubscribers.TryGetValue(typeof(E), out IListenerBase listeners)) return;
 
             (listeners as IListener<E>).Invoke(newEvent);
+        }
+        
+        public static void UndoSingle<E>(E newEvent) where E : struct
+        {
+            if (!_singleSubscribers.TryGetValue(typeof(E), out IListenerBase listeners)) return;
+
+            (listeners as IListener<E>).Undo(newEvent);
         }
         #endregion
 
@@ -69,5 +76,6 @@ namespace YNL.Patterns.Observers
     public interface IListener<E> : IListenerBase
     {
         void Invoke(E @event);
+        void Undo(E @event);
     }
 }

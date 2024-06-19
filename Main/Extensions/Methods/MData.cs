@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using UnityEngine;
 using System.Linq;
 using YNL.Utilities.Addons;
+using System.Collections.Generic;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -98,29 +100,40 @@ namespace YNL.Extensions.Methods
 	public static class MAsset
 	{
 #if UNITY_EDITOR
-		public static SerializableDictionary<string, T> GetAssetDict<T>(string path) where T : UnityEngine.Object
-		{
-			SerializableDictionary<string, T> dictionary = new();
-			T[] assets = GetAssetList<T>(path);
+        public static T[] GetAssets<T>(this string path) where T : UnityEngine.Object
+        {
+            List<T> assets = new List<T>();
+            var asset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
 
-			foreach (var asset in assets) dictionary.Add(asset.name, asset);
+            if (asset is DefaultAsset)
+            {
+                string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { path });
+                foreach (var guid in guids)
+                {
+                    string getPath = AssetDatabase.GUIDToAssetPath(guid);
+                    T texture = AssetDatabase.LoadAssetAtPath<T>(getPath);
+                    assets.AddDistinct(texture);
+                }
+            }
+            else if (asset is T)
+            {
+                assets.AddDistinct(asset as T);
+            }
 
-			return dictionary;
-		}
+            return assets.ToArray();
+        }
 
-		public static T[] GetAssetList<T>(string path) where T : UnityEngine.Object
-		{
-			string[] fileEntries = Directory.GetFiles(path);
+        public static SerializableDictionary<string, T> GetAssetsDict<T>(this string path) where T : UnityEngine.Object
+        {
+            T[] assets = path.GetAssets<T>();
+            SerializableDictionary<string, T> assetDict = new();
 
-			return fileEntries.Select(fileName =>
-			{
-				string assetPath = fileName.Substring(fileName.IndexOf("Assets"));
-				assetPath = Path.ChangeExtension(assetPath, null);
-				return AssetDatabase.LoadAssetAtPath(assetPath, typeof(T));
-			}).OfType<T>().ToArray();
-		}
+            foreach (var asset in assets) assetDict.Add(asset.name, asset);
 
-		public static T LoadAsset<T>(this string path) where T : UnityEngine.Object
+            return assetDict;
+        }
+
+        public static T LoadAsset<T>(this string path) where T : UnityEngine.Object
 			=> AssetDatabase.LoadAssetAtPath<T>(path);
 
 		public static T LoadResource<T>(this string path) where T : UnityEngine.Object
