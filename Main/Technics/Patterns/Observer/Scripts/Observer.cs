@@ -76,6 +76,9 @@ namespace YNL.Patterns.Observers
     public interface IListener<E> : IListenerBase
     {
         void Invoke(E @event);
-        void Undo(E @event);
+        virtual void Undo(E @event)
+        {
+
+        }
     }
 }
