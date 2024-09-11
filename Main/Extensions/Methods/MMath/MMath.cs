@@ -46,7 +46,16 @@ namespace YNL.Extensions.Methods
         /// <summary>
         /// Remap a value from an original range into a target range.
         /// </summary>
-        public static float Remap(this ref float value, MRange origin, MRange target)
+        public static float Remap(this float value, MRange origin, MRange target)
+        {
+            float tempvalue = Math.Max(origin.Min, Math.Min(origin.Max, value));
+
+            float normalizedValue = (tempvalue - origin.Min) / origin.Distance;
+            float remappedValue = target.Min + (normalizedValue * target.Distance);
+
+            return remappedValue;
+        }
+        public static float RefRemap(this ref float value, MRange origin, MRange target)
         {
             value = Math.Max(origin.Min, Math.Min(origin.Max, value));
 
