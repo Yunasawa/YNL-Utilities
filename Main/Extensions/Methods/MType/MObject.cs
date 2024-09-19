@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -12,7 +13,12 @@ namespace YNL.Extensions.Methods
         /// Check whether object is null or not 
         /// </summary>
         public static bool IsNull(this object obj) => obj == null;
-        public static bool IsNullReference(this object obj) => obj == null || ReferenceEquals(obj, null);
+        public static bool IsNullOrDestroyed(this object obj)
+        {
+            if (object.ReferenceEquals(obj, null)) return true;
+            if (obj is UnityEngine.Object) return (obj as UnityEngine.Object) == null;
+            return false;
+        }
 
         /// <summary>
         /// Destroy an object/component/asset in OnValidate(), while Destroy() and DestroyImmediate() are not working.
@@ -58,6 +64,83 @@ namespace YNL.Extensions.Methods
         {
             await Task.Delay((int)(time * 1000));
             gameObject.SetActive(active);
+        }
+
+        /// <summary>
+        /// Detect if this GameObject has the same name with other children in the same path.
+        /// </summary>
+        public static bool HasDuplicatedNameInSamePath(this GameObject gameObject)
+        {
+            if (gameObject.transform.parent.IsNull()) return false;
+            else return gameObject.transform.parent.Cast<Transform>().Count(i => i.name == gameObject.name) > 1;
+        }
+    
+        /// <summary>
+        /// Get full path of a GameObject (contains GO name)
+        /// </summary>
+        public static string GetPath(this GameObject gameObject, bool isFull = true, string separator = "/")
+        {
+            string path = "";
+            if (isFull) path = gameObject.name;
+
+            while (!gameObject.transform.parent.IsNull())
+            {
+                gameObject = gameObject.transform.parent.gameObject;
+                path = $"{gameObject.name}{separator}{path}";
+            }
+
+            if (!isFull && path.Length > 0) path = path.Substring(0, path.Length - separator.Length);
+
+            return path;
+        }
+        public static string GetAnimationPath(this GameObject gameObject, Animator animator, bool isFull = true)
+        {
+            string path = "";
+            if (isFull) path = gameObject.name;
+
+            bool isRoot = gameObject == animator.gameObject;
+
+            if (isRoot)
+            {
+                path = "";
+            }
+            else
+            {
+                while (gameObject.transform.parent.gameObject != animator.gameObject)
+                {
+                    gameObject = gameObject.transform.parent.gameObject;
+                    path = $"{gameObject.name}/{path}";
+                }
+
+                if (!isFull && path.Length > 0) path = path.Substring(0, path.Length - 1);
+            }
+
+            return path;
+        }
+
+        /// <summary>
+        /// Check if an object has parent changed.
+        /// </summary>
+        public static bool HasParentChanged(this string beforePath, string afterPath)
+        {
+            string[] beforeComponents = beforePath.Split('/');
+            string[] afterComponents = afterPath.Split('/');
+
+            string beforeParent = beforeComponents.Length > 1 ? beforeComponents[^2] : "";
+            string afterParent = afterComponents.Length > 1 ? afterComponents[^2] : "";
+
+            return beforeParent != afterParent;
+        }
+        
+        /// <summary>
+        /// Check if an object has been renamed.
+        /// </summary>
+        public static bool HasBeenRenamed(this string beforePath, string afterPath)
+        {
+            string beforeName = beforePath.Split('/')[^1];
+            string afterName = afterPath.Split('/')[^1];
+            
+            return beforeName != afterName;
         }
     }
 

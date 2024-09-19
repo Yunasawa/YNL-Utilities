@@ -6,10 +6,10 @@ namespace YNL.Extensions.Methods
     public static class MColor
     {
         /// <summary>
-        /// Normalize the Color from range of 0 - 255 into range of 0 - 1
+        /// Normalize the RGB values of Color from range of 0 - 255 into range of 0 - 1
         /// </summary>
         public static Color Normalize(this Color color)
-            => new Color(color.r / 255, color.g / 255, color.b / 255, 1);
+            => new Color(color.r / 255, color.g / 255, color.b / 255, color.a);
 
         /// <summary>
         /// Lighten a color if <i>factor</i> is greater then 1, darken if <i>factor</i> is smaller than 1.
@@ -67,5 +67,17 @@ namespace YNL.Extensions.Methods
             }
             return color;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static Color RandomColor(int min, int max, float alpha = 1)
+        {
+            int r = UnityEngine.Random.Range(min, max);
+            int g = UnityEngine.Random.Range(min, max);
+            int b = UnityEngine.Random.Range(min, max);
+            return new Color(r, g, b, alpha).Normalize();
+        }
+        
     }
 }

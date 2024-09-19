@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -17,10 +17,10 @@ namespace YNL.Extensions.Methods
             => inputString.Replace(removedString, "");
 
         /// <summary>
-        /// Return a string removed all the <b><i>removedString</i></b> string.
+        /// Return a string removed all the <b><i>word</i></b> string.
         /// </summary>
-        public static string RemoveWord(this string inputString, string removedString)
-            => inputString.Replace(removedString, "");
+        public static string RemoveWord(this string inputString, string word)
+            => inputString.Replace(word, "");
 
         /// <summary>
         /// Convert object to string with given format. <br></br>
@@ -315,6 +315,103 @@ namespace YNL.Extensions.Methods
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        /// <summary>
+        /// Detects and highlights all the different parts between <i>str1</i> and <i>str2</i>. <br></br>
+        /// <br></br>
+        /// Param <i>ignoreLength</i>: Will highlight the part in the longer string. <br></br>
+        /// <br></br>
+        /// Example 1: (ignoreLength = false)<br></br>
+        /// str1: "This is Mona Helen" | str2: "This is Mila Henry" <br></br>
+        /// ▶ str3: "This is M[on]a He[len]" | str4: "This is M[il]a He[nry]". <br></br>
+        /// <br></br>
+        /// Example 2: (ignoreLength = true)<br></br>
+        /// str1: "This is Mona" | str2: "This is Mila Henry" <br></br>
+        /// ▶ str3: "This is M[on]a[]" | str4: "This is M[il]a[ Henry]". <br></br>
+        /// </summary>
+        public static string HighlightDifferences(this string str1, string str2, bool ignoreLength = false, string header = "|", string footer = "|")
+        {
+            StringBuilder result = new StringBuilder();
+
+            int minLength = Math.Min(str1.Length, str2.Length);
+            bool inDifference = false;
+
+            for (int i = 0; i < minLength; i++)
+            {
+                if (str1[i] != str2[i])
+                {
+                    if (!inDifference)
+                    {
+                        result.Append(header);
+                        inDifference = true;
+                    }
+                    result.Append(str1[i]);
+                }
+                else
+                {
+                    if (inDifference)
+                    {
+                        result.Append(footer);
+                        inDifference = false;
+                    }
+                    result.Append(str1[i]);
+                }
+            }
+
+            if (inDifference) result.Append(footer);
+
+            if (str1.Length > minLength)
+            {
+                result.Append(header);
+                result.Append(str1.Substring(minLength));
+                if (ignoreLength)
+                {
+                    result.Append(new string(' ', str2.Length - minLength));
+                }
+                result.Append(footer);
+            }
+            else if (str2.Length > minLength)
+            {
+                result.Append(header);
+                if (ignoreLength)
+                {
+                    result.Append(new string(' ', str1.Length - minLength));
+                }
+                result.Append(footer);
+            }
+
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// Fill a string at the end with space to match the target length.
+        /// </summary>
+        public static string FillSpace(this string input, int length, char filler = ' ')
+        {
+            if (input.Length >= length) return input;
+
+            int needed = length - input.Length;
+            for (int i = 0; i < needed; i++) input += filler;
+
+            return input;
+        }
+
+        /// <summary>
+        /// Remove the same part of 2 string
+        /// </summary>
+        public static string RemoveSamePart(this string str1, string str2)
+        {
+            int minLength = Math.Min(str1.Length, str2.Length);
+            int commonPrefixLength = 0;
+
+            for (int i = 0; i < minLength; i++)
+            {
+                if (str1[i] == str2[i]) commonPrefixLength++;
+                else break;
+            }
+
+            return str1.Substring(commonPrefixLength);
         }
     }
 

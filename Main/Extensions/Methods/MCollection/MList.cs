@@ -6,6 +6,16 @@ namespace YNL.Extensions.Methods
 {
     public static class MList
     {
+        /// <summary>
+        /// Get a list that removed the predicated elements.
+        /// </summary>
+        public static List<T> RemoveAllWhere<T>(this List<T> list, Predicate<T> predicate)
+        {
+            List<T> newList = new List<T>();
+            foreach (var item in list) if (!predicate(item)) newList.Add(item);
+            return newList;
+        }
+
         /// <summary> 
         /// Get random element in a list. 
         /// </summary>
@@ -18,11 +28,11 @@ namespace YNL.Extensions.Methods
         /// <summary>
         /// Get random element in a list but not the same with current.
         /// </summary>
-        public static T GetRandomBut<T>(this IList<T> list, int current)
+        public static T GetRandomNotRepeat<T>(this IList<T> list, int current)
         {
             if (list.Count == 0) throw new IndexOutOfRangeException("List is empty!");
             int next = UnityEngine.Random.Range(0, list.Count);
-            if (next == current) return list.GetRandomBut(current);
+            if (next == current) return list.GetRandomNotRepeat(current);
             else return list[next];
         }
 
