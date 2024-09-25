@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 namespace YNL.Extensions.Methods
@@ -93,9 +94,13 @@ namespace YNL.Extensions.Methods
 
             return path;
         }
+        public static string GetPath<T>(this T gameObject, bool isFull = true, string separator = "/") where T : Component
+            => gameObject.gameObject.GetPath(isFull, separator);
         public static string GetAnimationPath(this GameObject gameObject, Animator animator, bool isFull = true)
         {
             string path = "";
+
+            if (gameObject.IsNullOrDestroyed()) return path;
             if (isFull) path = gameObject.name;
 
             bool isRoot = gameObject == animator.gameObject;
@@ -141,6 +146,30 @@ namespace YNL.Extensions.Methods
             string afterName = afterPath.Split('/')[^1];
             
             return beforeName != afterName;
+        }
+
+        /// <summary>
+        /// Find object's parent from a full path.
+        /// </summary>
+        public static GameObject GetParent(this string fullPath)
+        {
+            string[] names = fullPath.Split("/");
+            if (names.Length <= 1) return null;
+
+            return GameObject.Find(string.Join("/", names.Take(names.Length - 1)));
+        }
+
+        /// <summary>
+        /// Check if an object is a chidld of another or not.
+        /// </summary>
+        public static bool IsChildOf(this GameObject gameObject, GameObject parent)
+        {
+            while (!gameObject.transform.parent.IsNull())
+            {
+                if (gameObject == parent) return true;
+            }
+
+            return false;
         }
     }
 
