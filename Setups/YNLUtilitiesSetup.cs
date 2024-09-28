@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !YNL_CREATOR
 using System.Linq;
 using UnityEditor;
 
@@ -19,6 +19,7 @@ namespace YNL.Utilities.Setups
             }
         }
 
+        [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
             EditorDefineSymbols.AddSymbols("YNL_UTILITIES");
