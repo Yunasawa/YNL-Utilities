@@ -19,7 +19,6 @@ namespace YNL.Utilities.Setups
             }
         }
 
-        [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
             EditorDefineSymbols.AddSymbols("YNL_UTILITIES");
