@@ -63,7 +63,7 @@ namespace YNL.Utilities.Setups
             foreach (var symbol in symbols)
             {
                 if (!HasSymbol(symbol)) continue;
-                _defineSymbols.Add(symbol);
+                _defineSymbols.Remove(symbol);
             }
             PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, String.Join(";", _defineSymbols));
             NotifySymbols(String.Join("; ", symbols), false);
