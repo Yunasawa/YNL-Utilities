@@ -50,6 +50,14 @@ namespace YNL.Extensions.Methods
         {
             foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.Destroy(child.gameObject);
         }
+        public static void DestroyAllChildrenImmediate(this GameObject gameObject)
+        {
+            foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.DestroyImmediate(child.gameObject);
+        }
+        public static void DestroyAllChildrenImmediate(this Transform gameObject)
+        {
+            foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.DestroyImmediate(child.gameObject);
+        }
 
         /// <summary>
         /// Destroy child at index
