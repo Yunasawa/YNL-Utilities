@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -42,22 +43,20 @@ namespace YNL.Extensions.Methods
         /// <summary> 
         /// Destroy children of an object. 
         /// </summary>
-        public static void DestroyAllChildren(this GameObject gameObject)
-        {
-            foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.Destroy(child.gameObject);
-        }
         public static void DestroyAllChildren(this Transform gameObject)
         {
             foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.Destroy(child.gameObject);
         }
-        public static void DestroyAllChildrenImmediate(this GameObject gameObject)
-        {
-            foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.DestroyImmediate(child.gameObject);
-        }
+        public static void DestroyAllChildren(this GameObject gameObject)
+            => gameObject.transform.DestroyAllChildren();
         public static void DestroyAllChildrenImmediate(this Transform gameObject)
         {
-            foreach (var child in gameObject.transform.Cast<Transform>()) UnityEngine.Object.DestroyImmediate(child.gameObject);
+            List<Transform> children = new();
+            foreach (Transform child in gameObject.transform) children.Add(child);
+            foreach (Transform child in children) UnityEngine.Object.DestroyImmediate(child.gameObject);
         }
+        public static void DestroyAllChildrenImmediate(this GameObject gameObject)
+            => gameObject.transform.DestroyAllChildrenImmediate();
 
         /// <summary>
         /// Destroy child at index
