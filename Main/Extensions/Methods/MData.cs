@@ -135,9 +135,8 @@ namespace YNL.Extensions.Methods
 
         public static T LoadAsset<T>(this string path) where T : UnityEngine.Object
 			=> AssetDatabase.LoadAssetAtPath<T>(path);
-
+#endif
 		public static T LoadResource<T>(this string path) where T : UnityEngine.Object
 			=> Resources.Load<T>(path);
-#endif
 	}
 }
