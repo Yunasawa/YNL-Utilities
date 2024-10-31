@@ -6,6 +6,9 @@ namespace YNL.Extensions.Methods
 {
     public static class MMath
     {
+        public static bool IsEven(this int number) => number % 2 == 0;
+        public static bool IsOdd(this int number) => number % 2 != 0;
+
         /// <summary>
         /// Convert a numeric string into decimal number.
         /// </summary>
