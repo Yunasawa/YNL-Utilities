@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using YNL.Utilities.Patterns;
+using YNL.Utilities.Extensions;
 
 namespace YNL.Utilities.Patterns
 {
@@ -18,9 +18,13 @@ namespace YNL.Utilities.Patterns
             Commands.Add(command);
         }
 
-        public static void Create()
+        public static void Inject(string assemblyName = "")
         {
-            var commandTypes = from t in Assembly.GetExecutingAssembly().GetTypes()
+            Assembly assembly;
+            if (!assemblyName.IsNullOrEmpty()) assembly = Assembly.Load(assemblyName);
+            else assembly = Assembly.GetExecutingAssembly();
+
+            var commandTypes = from t in assembly.GetTypes()
                                where t.GetCustomAttributes(typeof(InjectCommandAttribute), false).Length > 0
                                select t;
 
