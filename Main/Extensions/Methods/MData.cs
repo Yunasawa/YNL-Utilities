@@ -5,6 +5,8 @@ using UnityEngine;
 using System.Linq;
 using YNL.Utilities.Addons;
 using System.Collections.Generic;
+using System.Text;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -148,7 +150,11 @@ namespace YNL.Utilities.Extensions
 
             if (!Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
 
-            File.Create(path);
+            using (FileStream fileStream = File.Create(path))
+            {
+                byte[] content = new UTF8Encoding(true).GetBytes("");
+                fileStream.Write(content, 0, content.Length);
+            }
         }
     }
 }
