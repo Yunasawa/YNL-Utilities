@@ -1,7 +1,4 @@
-namespace YNL.Extensions.Addons
+namespace YNL.Utilities.Addons
 {
-    public enum MAddressType
-    {
-        Resources, Assets
-    }
+    public enum MAddressType : byte { Resources, Assets }
 }

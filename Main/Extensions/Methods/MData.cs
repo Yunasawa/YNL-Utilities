@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
 	public static class MJson
 	{
@@ -139,4 +139,16 @@ namespace YNL.Extensions.Methods
 		public static T LoadResource<T>(this string path) where T : UnityEngine.Object
 			=> Resources.Load<T>(path);
 	}
+
+    public static class MFile
+    {
+        public static void CreateFile(string path)
+        {
+            string directoryPath = Path.GetDirectoryName(path);
+
+            if (!Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
+
+            File.Create(path);
+        }
+    }
 }

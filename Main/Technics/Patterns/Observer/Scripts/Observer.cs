@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace YNL.Patterns.Observers
+namespace YNL.Utilities.Patterns
 {
     public static class Observer
     {

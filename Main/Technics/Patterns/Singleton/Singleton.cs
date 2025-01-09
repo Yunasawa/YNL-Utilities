@@ -1,7 +1,7 @@
 using UnityEngine;
-using YNL.Extensions.Methods;
+using YNL.Utilities.Extensions;
 
-namespace YNL.Patterns.Singletons
+namespace YNL.Utilities.Patterns
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace YNL.Patterns.Singletons
                 // If no instance is found, find the first GameObject of type T
                 if (_instance == null)
                 {
-                    _instance = FindObjectOfType<T>();
+                    _instance = FindFirstObjectByType<T>();
 
                     // If no instance exists in the Scene, create a new GameObject and add the Component T 
                     if (_instance == null)

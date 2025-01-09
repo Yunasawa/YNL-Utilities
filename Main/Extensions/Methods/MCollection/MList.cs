@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
     public static class MList
     {

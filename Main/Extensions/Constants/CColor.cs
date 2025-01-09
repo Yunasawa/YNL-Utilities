@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using YNL.Extensions.Methods;
+using YNL.Utilities.Extensions;
 
 namespace YNL.Utilities.Extensions
 {

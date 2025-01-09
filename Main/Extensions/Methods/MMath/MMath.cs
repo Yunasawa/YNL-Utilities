@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using YNL.Extensions.Addons;
+using YNL.Utilities.Addons;
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
     public static class MMath
     {

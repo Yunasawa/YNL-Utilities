@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YNL.Patterns.Observers
+namespace YNL.Utilities.Patterns
 {
     // Use IListener for objects that listen to events
     public class Garage : MonoBehaviour

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
     public static class MColor
     {

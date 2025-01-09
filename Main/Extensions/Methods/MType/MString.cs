@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System;
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
     public static class MString
     {

@@ -4,7 +4,7 @@ using System.Reflection;
 using System;
 using System.Security.Cryptography;
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
     public static class MType
     {

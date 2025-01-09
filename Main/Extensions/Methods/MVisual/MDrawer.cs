@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace YNL.Extensions.Methods
+namespace YNL.Utilities.Extensions
 {
     public static class MDrawer
     {
